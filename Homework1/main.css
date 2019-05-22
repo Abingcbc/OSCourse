@@ -1,0 +1,21 @@
+.table th, .table td {
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+.table img {
+    height: 25px;
+    visibility: hidden;
+}
+
+.show_img {
+    width: 200px;
+}
+.show_img img{
+    visibility: visible;
+}
+.show_img button {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
