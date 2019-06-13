@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+    <title>操作系统————文件管理</title>
+    <link rel="icon" href="../images/favicon.png">
+    <link rel="stylesheet" href="../css/googleapis_css.css">
+    <link rel="stylesheet" href="../css/googleapis_icon.css">
+    <link rel="stylesheet" href="../css/material_cyan.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/main.js" type="text/javascript"></script>
+    <script src="../js/material.min.js"></script>
+    <script type="text/javascript">init()</script>
+    <style>
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+        <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+            <div class="mdl-layout__header-row">
+                <span id="path" class="mdl-layout-title">root</span>
+                <div class="mdl-layout-spacer"></div>
+            </div>
+        </header>
+        <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+            <header class="demo-drawer-header">
+                <img src="../images/user.jpg" class="demo-avatar">
+
+                <a href="https://github.com/Abingcbc/OSCourse" class="mdl-navigation__link_light" target="_blank"
+                    style="margin-top:10px">View
+                    in Github</a>
+                <div class="demo-avatar-dropdown">
+                    <span id="user_name">user1</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                        <i class="material-icons" role="presentation">arrow_drop_down</i>
+                        <span class="visuallyhidden">Accounts</span>
+                    </button>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+                        <li class="mdl-menu__item" onclick="changeUser(0)">admin</li>
+                        <li class="mdl-menu__item" onclick="changeUser(1)">user1</li>
+                        <li class="mdl-menu__item" onclick="changeUser(2)">user2</li>
+                    </ul>
+                </div>
+            </header>
+            <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                <p class="mdl-navigation__link" onclick="goBack()"><i
+                        class="mdl-color-text--blue-grey-400 material-icons" role="presentation">arrow_back</i>Go back
+                </p>
+                <p class="mdl-navigation__link" onclick="reformat()"><i
+                        class="mdl-color-text--blue-grey-400 material-icons" role="presentation">warning</i>Format</p>
+                <div class="mdl-layout-spacer"></div>
+                <a class="mdl-navigation__link" href="https://getmdl.io/index.html" target="_blank">Based on<br>Material
+                    Design Lite</span></a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content mdl-color--grey-100">
+            <div id="main_content" class="mdl-grid demo-content">
+                <div id="main_files" class="demo-cards mdl-cell mdl-cell--12-col mdl-grid">
+                    <!-- <div class="demo-updates mdl-shadow--2dp mdl-cell mdl-cell--2-col">
+                        <div class="mdl-card__title" style="background-image: url(../images/folder.png)">
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <div class="demo-avatar-dropdown">
+                                <span class="mdl-layout-title">home</span>
+                                <div class="mdl-layout-spacer"></div>
+                                <button id="btn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                    <i class="material-icons" role="presentation">more_horiz</i>
+                                </button>
+                                <ul id='test' class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                                    for="btn">
+                                    <li class="mdl-menu__item" onclick="changeUser(0)">
+                                        <span class="mdl-list__item-primary-content">
+                                            <i class="material-icons mdl-list__item-icon">info</i>
+                                            Info
+                                        </span>
+                                    </li>
+                                    <li class="mdl-menu__item" onclick="changeUser(0)">
+                                        <span class="mdl-list__item-primary-content">
+                                            <i class="material-icons mdl-list__item-icon">border_color</i>
+                                            Rename
+                                        </span>
+                                    </li>
+                                    <li class="mdl-menu__item" onclick="changeUser(0)">
+                                        <span class="mdl-list__item-primary-content">
+                                            <i class="material-icons mdl-list__item-icon">delete</i>
+                                            Delete
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </main>
+    </div>
+    <p id="view-source"
+        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white"
+        onclick="showDialog()">
+        Create New File</p>
+    <dialog class="mdl-dialog" id="create_file" style="display: none">
+        <h4 class="mdl-dialog__title">Add new file or folder</h4>
+        <div class="mdl-dialog__content">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="file_name">
+                <label class="mdl-textfield__label" for="file_name">Name</label>
+            </div>
+            <p>Type setting</p>
+            <p id="type_title"></p>
+            <button id="type_setting" class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="type_setting">
+                <li id="type1" class="mdl-menu__item" onclick="changeType(0)">file</li>
+                <li id="type2" class="mdl-menu__item" onclick="changeType(1)">folder</li>
+            </ul>
+            <p>Write right setting</p>
+            <p id="write_setting"></p>
+            <button id="write_right_setting" class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="write_right_setting">
+                <li id="write1" class="mdl-menu__item" onclick="addUserWriteRight(1)" style="display: none">user1</li>
+                <li id="write2" class="mdl-menu__item" onclick="addUserWriteRight(2)">user2</li>
+            </ul>
+            <p>Read right setting</p>
+            <p id="read_setting"></p>
+            <button id="read_right_setting" class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="read_right_setting">
+                <li id="read1" class="mdl-menu__item" onclick="addUserReadRight(1)" style="display: none">user1</li>
+                <li id="read2" class="mdl-menu__item" onclick="addUserReadRight(2)">user2</li>
+            </ul>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button" id="create_btn" onclick="createFile()">Confirm</button>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button" id="cancel_btn" onclick="closeDialog()">Cancel</button>
+        </div>
+    </dialog>
+    <dialog class="mdl-dialog" id="file_info_dialog" style="display: none">
+        <h4 id="file_info_name" class="mdl-dialog__title"></h4>
+        <div class="mdl-dialog__content">
+            <h5>Size</p>
+                <p id="size_info"></p>
+                <h5>Write right</p>
+                    <p id="write_info"></p>
+                    <h5>Read right</p>
+                        <p id="read_info"></p>
+                        <h5>Create time</p>
+                            <p id="create_time_info"></p>
+                            <h5>Update time</p>
+                                <p id="update_time_info"></p>
+                                <h5 id="file_children_title">Contained file number</p>
+                                    <p id="file_children"></p>
+                                    <h5 id="file_type_title">File type</p>
+                                        <p id="file_type"></p>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button" onclick="closeInfo()">Close</button>
+        </div>
+    </dialog>
+    <dialog class="mdl-dialog" id="rename_dialog" style="display: none">
+        <h4 class="mdl-dialog__title">Rename</h4>
+        <div class="mdl-dialog__content">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="rename_name">
+                <label class="mdl-textfield__label" for="file_name">Name</label>
+            </div>
+            <p id='origin_name' style="display: none"></p>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button" onclick="changeName()">Confirm</button>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button" onclick="closeRename()">Cancel</button>
+        </div>
+    </dialog>
+    <dialog class="mdl-dialog" id="setting_dialog" style="display: none">
+        <h4 id="setting_title" class="mdl-dialog__title"></h4>
+        <div class="mdl-dialog__content">
+            <p>Write right setting</p>
+            <p id="write_user"></p>
+            <button id="change_write_setting" class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="change_write_setting">
+                <li class="mdl-menu__item" onclick="reverseWriteRight(1)" style="display: none">user1</li>
+                <li class="mdl-menu__item" onclick="reverseWriteRight(2)">user2</li>
+            </ul>
+            <p>Read right setting</p>
+            <p id="read_user"></p>
+            <button id="change_read_setting" class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="change_read_setting">
+                <li class="mdl-menu__item" onclick="reverseReadRight(1)" style="display: none">user1</li>
+                <li class="mdl-menu__item" onclick="reverseReadRight(2)">user2</li>
+            </ul>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button" id="create_btn" onclick="updateRightSetting()">Confirm</button>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button" id="cancel_btn" onclick="closeSetting()">Cancel</button>
+        </div>
+    </dialog>
+    <dialog class="mdl-dialog" id="content_dialog" style="display: none">
+        <h4 id="file_title" class="mdl-dialog__title"></h4>
+        <div class="mdl-dialog__content">
+            <p id="read_mode_content" class="paragraph"></p>
+            <div id="write_mode_content" class="mdl-textfield mdl-js-textfield">
+                <textarea class="mdl-textfield__input" type="text" rows="20" id="file_content"></textarea>
+            </div>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button" id="save_content_btn" onclick="saveContent()">Confirm</button>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button" onclick="closeContent()">Cancel</button>
+        </div>
+    </dialog>
+    <div id="message_snackbar" class="mdl-js-snackbar mdl-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button class="mdl-snackbar__action" type="button"></button>
+    </div>
+</body>
+
+</html>

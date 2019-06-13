@@ -1,0 +1,19 @@
+#basic_information {
+    text-align: center;
+}
+
+#pages {
+    margin: 10px;
+}
+
+.demo-list-control {
+    width: 300px;
+}
+  
+.demo-list-radio {
+    display: inline;
+}
+
+#choose_algorithm_button {
+    margin: 20px;
+}

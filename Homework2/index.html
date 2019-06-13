@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>操作系统项目——内存管理</title>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+    <script src="main.js" type="text/javascript"></script>
+    <script src="mdl/material.min.js"></script>
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="mdl/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div id='basic_information'>
+        <h1>请求调页存储管理方式模拟</h1>
+        <h4>1753837 陈柄畅</h4>
+    </div>
+    <div id='main'>
+        <div id='pages' class="mdl-grid">
+            <div id="page0" class="mdl-card mdl-shadow--2dp page mdl-cell mdl-cell--2-col">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Page0</h2>
+                </div>
+                <table id="table_page0" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">序号</th>
+                            <th>指令</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div id="page1" class="mdl-card mdl-shadow--2dp page mdl-cell mdl-cell--2-col">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Page1</h2>
+                </div>
+                <table id="table_page1" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">序号</th>
+                            <th>指令</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div id="page2" class="mdl-card mdl-shadow--2dp page mdl-cell mdl-cell--2-col">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Page2</h2>
+                </div>
+                <table id="table_page2" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">序号</th>
+                            <th>指令</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div id="page3" class="mdl-card mdl-shadow--2dp page mdl-cell mdl-cell--2-col">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Page3</h2>
+                </div>
+                <table id="table_page3" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">序号</th>
+                            <th>指令</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div id="controller" class='mdl-cell mdl-cell--4-col'>
+                <div class="mdl-card mdl-shadow--2dp">
+                    <div style="text-align: center">
+                        <button id="choose_algorithm_button" class="mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons">more_vert</i>
+                        </button>
+                        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                            for="choose_algorithm_button">
+                            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider" onclick="chooseAlgorithm(0)">
+                                FIFO</li>
+                            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider" onclick="chooseAlgorithm(1)">
+                                LRU</li>
+                            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider" onclick="chooseAlgorithm(2)">
+                                RAND</li>
+                        </ul>
+                        <p id='algorithm_name' style="font-size: 30px;">FIFO</p>
+                    </div>
+                    <p style="margin-left: 15px">缺页次数：</p>
+                    <p id='lack_number' style="margin-left: 15px"></p>
+                    <p style="margin-left: 15px">缺页率：</p>
+                    <p id="lack_rate" style="margin-left: 15px"></p>
+                </div>
+                <div class="mdl-card mdl-shadow--2dp" style="margin-top: 20px">
+                    <p style="margin-top: 20px; margin-left: 15px">已执行指令条数：</p>
+                    <p id="instruction_number" style="margin-left: 15px"></p>
+                    <p style="margin-left: 15px">当前指令：</p>
+                    <p id="instruction_name" style="margin-left: 15px"></p>
+                    <p style="margin-left: 15px">当前指令内存中位置：</p>
+                    <p id="instruction_address" style="margin-left: 15px"></p>
+                    <button id="one_step"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                        onclick="oneStep(true)">
+                        步进
+                    </button>
+                    <button id="all_step"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                        onclick="allStep()">
+                        进行到底
+                    </button>
+                    <button id="reset"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                        onclick="reset()">
+                        重置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>reset()</script>
+</body>
+
+</html>
