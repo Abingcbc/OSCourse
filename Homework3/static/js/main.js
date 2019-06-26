@@ -41,6 +41,7 @@ changeUser = (user_id) => {
     } else {
         document.getElementById("user_name").innerHTML = "user2";
     }
+    cur_path = 'root'
     getCurFiles();
 }
 
